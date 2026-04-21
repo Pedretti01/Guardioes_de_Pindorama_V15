@@ -12,7 +12,7 @@
 
 **Guardiões de Pindorama** é um jogo digital em 2D, de aventura e ação, desenvolvido como módulo do estudante dentro do ecossistema **TPG System**. O projeto foi concebido para integrar narrativa interativa, progressão por mapa, desafios baseados em conhecimento, combate em tempo real e mediação pedagógica em uma mesma experiência de uso.
 
-No contexto mais amplo do sistema, o jogo constitui a interface de interação do estudante com a trilha pedagógica gamificada. Seu papel é transformar conteúdos, desafios e percursos de aprendizagem em uma experiência ludicamente orientada, estruturada por fases, eventos narrativos, escolhas e provas contextualizadas. O artigo do projeto explicita que essa proposta está voltada ao engajamento de estudantes do 9º ano do Ensino Fundamental, com foco no componente curricular Arte, articulando também conhecimentos interdisciplinares e relatórios de acompanhamento para o professor. fileciteturn2file0L1-L20
+No contexto mais amplo do sistema, o jogo constitui a interface de interação do estudante com a trilha pedagógica gamificada. Seu papel é transformar conteúdos, desafios e percursos de aprendizagem em uma experiência ludicamente orientada, estruturada por fases, eventos narrativos, escolhas e provas contextualizadas. O artigo do projeto explicita que essa proposta está voltada ao engajamento de estudantes do 9º ano do Ensino Fundamental, com foco no componente curricular Arte, articulando também conhecimentos interdisciplinares e relatórios de acompanhamento para o professor.
 
 Do ponto de vista técnico, o protótipo já apresenta fluxo funcional de cenas, personagem jogável, progressão por áreas, sistema de diálogos, quiz contextualizado, enfrentamento de chefe, persistência de estado e integração com dispositivos de entrada alternativos. Esses elementos configuram um projeto jogável e tecnicamente estruturado, apto à documentação formal em GDD.
 
@@ -28,13 +28,13 @@ O GDD não substitui o artigo acadêmico do sistema nem sua fundamentação peda
 
 ## 3. Posicionamento do projeto no TPG System
 
-O artigo define o **TPG System** como uma Trilha Pedagógica Gamificada com elementos de RPG, organizada para promover engajamento, desenvolvimento, consolidação e aprofundamento de habilidades e competências, especialmente no componente Arte, ao mesmo tempo em que integra relatórios diagnósticos e de acompanhamento para professores. O jogo **Guardiões de Pindorama** ocupa, nesse sistema, a função de módulo interativo do estudante. fileciteturn2file0L1-L20 fileciteturn2file0L49-L76
+O artigo define o **TPG System** como uma Trilha Pedagógica Gamificada com elementos de RPG, organizada para promover engajamento, desenvolvimento, consolidação e aprofundamento de habilidades e competências, especialmente no componente Arte, ao mesmo tempo em que integra relatórios diagnósticos e de acompanhamento para professores. O jogo **Guardiões de Pindorama** ocupa, nesse sistema, a função de módulo interativo do estudante.
 
 Assim, o jogo deve ser compreendido como parte de uma arquitetura mais ampla, composta por:
 
 - **módulo do estudante**, representado pelo jogo em Pygame;
 - **módulo gestor do professor**, descrito no artigo como interface de monitoramento e geração de relatórios;
-- **camada de dados**, voltada ao registro do progresso e apoio à análise pedagógica. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
+- **camada de dados**, voltada ao registro do progresso e apoio à análise pedagógica. 
 
 Esse posicionamento é importante porque determina decisões de design. O jogo não foi planejado apenas como produto de entretenimento, mas como interface operacional de uma trilha gamificada com função formativa e diagnóstica.
 
@@ -91,13 +91,13 @@ Oferecer ao estudante uma experiência digital interativa capaz de articular aç
 
 ### 5.3 Objetivos relacionados ao sistema ampliado
 
-O artigo indica que o sistema busca permitir identificação de níveis de proficiência, diagnóstico de habilidades não consolidadas, acompanhamento do progresso e oferta de desafios adequados ao desenvolvimento individual do estudante. Dentro dessa lógica, o jogo funciona como ambiente de execução desses desafios e de coleta de evidências de percurso. fileciteturn2file0L49-L76 fileciteturn2file0L119-L144
+O artigo indica que o sistema busca permitir identificação de níveis de proficiência, diagnóstico de habilidades não consolidadas, acompanhamento do progresso e oferta de desafios adequados ao desenvolvimento individual do estudante. Dentro dessa lógica, o jogo funciona como ambiente de execução desses desafios e de coleta de evidências de percurso. 
 
 ---
 
 ## 6. Público-alvo do jogo
 
-No plano educacional do sistema, o artigo aponta estudantes do **9º ano do Ensino Fundamental** como público de referência, com foco no componente curricular **Arte** e nas linguagens artísticas, sem excluir articulações interdisciplinares. Também identifica os professores como usuários indiretos, responsáveis pela leitura dos resultados e pelo planejamento pedagógico a partir dos dados gerados. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
+No plano educacional do sistema, o artigo aponta estudantes do **9º ano do Ensino Fundamental** como público de referência, com foco no componente curricular **Arte** e nas linguagens artísticas, sem excluir articulações interdisciplinares. Também identifica os professores como usuários indiretos, responsáveis pela leitura dos resultados e pelo planejamento pedagógico a partir dos dados gerados.
 
 No plano técnico-jogável, o público imediato do módulo é o jogador-estudante, que interage com personagens, desafios, quizzes, combates e deslocamento por áreas. Já no plano institucional, o projeto também se dirige a avaliadores acadêmicos, docentes e equipes interessadas em **Jogos Sério**s e **Gamificação Pedagógica**.
 
@@ -204,7 +204,7 @@ A exploração estrutura o avanço espacial do jogador. Seu papel é permitir de
 A narrativa é transmitida por meio de diálogos sequenciados, imagens, falas de NPCs e eventos encadeados. Esse sistema guia o jogador e contextualiza tanto a missão quanto os desafios locais.
 
 ### 11.3 Quiz contextualizado
-O artigo afirma que o sistema utiliza desafios intelectuais como questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. No módulo jogável, isso se materializa em quizzes e decisões integradas à narrativa e à progressão. fileciteturn2file0L1-L20
+O artigo afirma que o sistema utiliza desafios intelectuais como questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. No módulo jogável, isso se materializa em quizzes e decisões integradas à narrativa e à progressão.
 
 ### 11.4 Decisão narrativa
 A presença de escolhas confere agência ao jogador e modula o avanço narrativo. Em termos de design, esse recurso amplia envolvimento e evita que o percurso se reduza a repetição linear de comandos.
@@ -283,7 +283,7 @@ A narrativa não é apenas decorativa. Ela organiza o sentido da exploração, j
 
 Embora este GDD mantenha foco técnico, é necessário registrar como os desafios de conteúdo se integram ao design, pois isso afeta diretamente a arquitetura do jogo.
 
-O artigo informa que o sistema foi concebido para estimular estudantes por meio de interface digital de jogo, oferecendo questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. Também afirma que os resultados serão integrados à interface do professor, apoiando monitoramento e relatórios de habilidades desenvolvidas, recuperadas e consolidadas. fileciteturn2file0L1-L20
+O artigo informa que o sistema foi concebido para estimular estudantes por meio de interface digital de jogo, oferecendo questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. Também afirma que os resultados serão integrados à interface do professor, apoiando monitoramento e relatórios de habilidades desenvolvidas, recuperadas e consolidadas.
 
 No módulo jogável, essa diretriz se traduz em:
 
@@ -353,7 +353,7 @@ O projeto foi desenvolvido com suporte a teclado e joystick, o que amplia versat
 
 - teclado;
 - controle/joystick;
-- integração com joystick analógico via Arduino Leonardo, no contexto ampliado do sistema. O artigo registra explicitamente essa integração IoT como parte do desenvolvimento técnico do projeto. fileciteturn2file0L119-L124
+- integração com joystick analógico via Arduino Leonardo, no contexto ampliado do sistema. O artigo registra explicitamente essa integração IoT como parte do desenvolvimento técnico do projeto.
 
 ### 18.2 Implicações de design
 
@@ -380,7 +380,7 @@ A direção de arte do jogo constitui um de seus elementos de maior singularidad
 
 ### 19.2 Ferramentas relacionadas à produção visual
 
-O artigo registra que a criação visual do projeto utilizou ferramentas como **Hero Forge**, **Inkscape**, **Krita** e plataformas de IA generativa, além de validação de interface em **Figma** para o módulo gestor. Essas informações ajudam a compreender o pipeline artístico e de prototipação vinculado ao projeto. fileciteturn2file0L106-L124
+O artigo registra que a criação visual do projeto utilizou ferramentas como **Hero Forge**, **Inkscape**, **Krita** e plataformas de IA generativa, além de validação de interface em **Figma** para o módulo gestor. Essas informações ajudam a compreender o pipeline artístico e de prototipação vinculado ao projeto.
 
 ### 19.3 Função da arte no design
 
@@ -429,7 +429,7 @@ Sem persistência, a proposta perderia sua natureza de trilha progressiva. O reg
 
 ## 22. Metodologia de desenvolvimento
 
-O artigo informa que o desenvolvimento técnico da aplicação adotou a metodologia ágil **Scrum**, com organização em sprints, revisões iterativas e melhorias contínuas com base em feedbacks de professores e estudantes. Isso ajuda a compreender o estágio do protótipo como resultado de desenvolvimento incremental, e não como construção linear fechada. fileciteturn2file0L94-L104
+O artigo informa que o desenvolvimento técnico da aplicação adotou a metodologia ágil **Scrum**, com organização em sprints, revisões iterativas e melhorias contínuas com base em feedbacks de professores e estudantes. Isso ajuda a compreender o estágio do protótipo como resultado de desenvolvimento incremental, e não como construção linear fechada.
 
 Do ponto de vista do GDD, essa informação é importante porque explica:
 
@@ -453,7 +453,7 @@ Com base na versão analisada e no artigo, o projeto já apresenta um estágio c
 - diálogos e quizzes integrados à narrativa;
 - combate e boss de fase;
 - suporte a joystick/IoT no ecossistema do projeto;
-- integração planejada com módulo gestor e relatórios. fileciteturn2file0L1-L20 fileciteturn2file0L106-L124
+- integração planejada com módulo gestor e relatórios.
 
 ### 23.2 Aspectos em continuidade
 
@@ -461,7 +461,7 @@ O próprio artigo aponta próximos passos como:
 
 - incorporação de IA para análise de dados e geração personalizada de questões;
 - investigação de motores como Unity, Unreal e Godot para aprimoramento gráfico;
-- expansão da plataforma para dispositivos móveis. fileciteturn2file0L129-L144 fileciteturn2file0L170-L189
+- expansão da plataforma para dispositivos móveis.
 
 Em termos de design do jogo, isso sugere continuidade de polimento visual, ampliação de conteúdos, amadurecimento técnico e expansão de alcance da solução.
 
@@ -471,6 +471,6 @@ Em termos de design do jogo, isso sugere continuidade de polimento visual, ampli
 
 **Guardiões de Pindorama** é um jogo tecnicamente estruturado para operar como módulo interativo do estudante dentro do **TPG System**. Sua arquitetura combina narrativa, progressão por mapa, quizzes, combate, interação com NPCs, persistência e interface dedicada, compondo uma base jogável consistente.
 
-O artigo do projeto esclarece que essa implementação não foi concebida como jogo isolado, mas como parte de uma proposta de trilha pedagógica gamificada, direcionada ao componente curricular Arte, ao engajamento de estudantes do 9º ano do Ensino Fundamental e ao apoio à prática docente por meio de relatórios e monitoramento. Esse enquadramento fortalece a leitura técnica do jogo, porque demonstra que sua estrutura de design responde a finalidades concretas de uso. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
+O artigo do projeto esclarece que essa implementação não foi concebida como jogo isolado, mas como parte de uma proposta de trilha pedagógica gamificada, direcionada ao componente curricular Arte, ao engajamento de estudantes do 9º ano do Ensino Fundamental e ao apoio à prática docente por meio de relatórios e monitoramento. Esse enquadramento fortalece a leitura técnica do jogo, porque demonstra que sua estrutura de design responde a finalidades concretas de uso.
 
 Como documento técnico, este GDD registra a lógica de funcionamento do jogo, seus sistemas centrais, suas decisões de design e seu posicionamento dentro da solução mais ampla. A continuidade do desenvolvimento tende a fortalecer ainda mais a integração entre arquitetura jogável, qualidade visual, controle de progressão e escalabilidade do projeto.
