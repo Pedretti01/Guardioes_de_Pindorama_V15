@@ -2,426 +2,475 @@
 ## Guardiões de Pindorama
 
 **Versão do documento:** 1.0  
-**Natureza do documento:** apresentação técnico-pedagógica do projeto  
-**Base de análise:** estrutura funcional do projeto, organização de assets, lógica de cenas, sistemas implementados e arquitetura observada no protótipo jogável  
-**Tecnologia-base:** Python e Pygame
+**Natureza do documento:** documentação técnica de design e desenvolvimento do jogo  
+**Projeto vinculado:** TPG System – Trilha Pedagógica Gamificada  
+**Plataforma-base do protótipo:** Python + Pygame
 
 ---
 
-## 1. Apresentação do projeto
+## 1. Visão geral do jogo
 
-**Guardiões de Pindorama** é um jogo digital em 2D, desenvolvido com a biblioteca Pygame, concebido para articular linguagem lúdica, progressão narrativa, desafios interativos e mediação de conhecimentos em uma mesma experiência. O projeto se insere no campo dos jogos sérios e das propostas de aprendizagem gamificada, ao integrar objetivos formativos à estrutura de aventura, exploração, combate, diálogo e resolução de desafios.
+**Guardiões de Pindorama** é um jogo digital em 2D, de aventura e ação, desenvolvido como módulo do estudante dentro do ecossistema **TPG System**. O projeto foi concebido para integrar narrativa interativa, progressão por mapa, desafios baseados em conhecimento, combate em tempo real e mediação pedagógica em uma mesma experiência de uso.
 
-A análise do protótipo evidencia um jogo centrado na jornada de um jovem protagonista convocado a restaurar o equilíbrio de Pindorama, território simbólico marcado por referências culturais brasileiras, pela presença da ancestralidade e por elementos narrativos ligados à relação entre natureza, coletividade e responsabilidade. Em termos de desenvolvimento, o projeto já demonstra organização modular, definição de fluxo de cenas, persistência de progresso, sistema de diálogos, quizzes integrados à narrativa, combate em tempo real, enfrentamento de chefe e uso de mapa como dispositivo de progressão.
+No contexto mais amplo do sistema, o jogo constitui a interface de interação do estudante com a trilha pedagógica gamificada. Seu papel é transformar conteúdos, desafios e percursos de aprendizagem em uma experiência ludicamente orientada, estruturada por fases, eventos narrativos, escolhas e provas contextualizadas. O artigo do projeto explicita que essa proposta está voltada ao engajamento de estudantes do 9º ano do Ensino Fundamental, com foco no componente curricular Arte, articulando também conhecimentos interdisciplinares e relatórios de acompanhamento para o professor. fileciteturn2file0L1-L20
 
-Trata-se, portanto, de um projeto que ultrapassa a dimensão de entretenimento isolado e se apresenta como artefato digital capaz de ser analisado sob duas perspectivas complementares: a perspectiva técnica, voltada à arquitetura, aos sistemas e à implementação jogável; e a perspectiva pedagógica, relacionada à mediação de conteúdos, ao engajamento do estudante e à integração entre narrativa, ação e aprendizagem.
+Do ponto de vista técnico, o protótipo já apresenta fluxo funcional de cenas, personagem jogável, progressão por áreas, sistema de diálogos, quiz contextualizado, enfrentamento de chefe, persistência de estado e integração com dispositivos de entrada alternativos. Esses elementos configuram um projeto jogável e tecnicamente estruturado, apto à documentação formal em GDD.
 
 ---
 
 ## 2. Finalidade deste documento
 
-Este GDD tem como finalidade sistematizar, de forma clara e formal, os principais elementos constitutivos do jogo, organizando informações relevantes para análise institucional, acadêmica e técnica do projeto. O documento busca:
+Este documento tem por objetivo registrar, de forma clara e técnica, os principais componentes de design, funcionamento e implementação observados em **Guardiões de Pindorama**, servindo como referência para análise, continuidade do desenvolvimento, validação institucional e documentação do projeto.
 
-- apresentar o conceito geral do jogo;
-- registrar a estrutura de funcionamento observada no protótipo;
-- descrever as principais mecânicas, fluxos e sistemas implementados;
-- evidenciar a intencionalidade pedagógica presente na experiência;
-- oferecer uma visão de conjunto que apoie avaliação, continuidade do desenvolvimento e refinamento futuro.
+O GDD não substitui o artigo acadêmico do sistema nem sua fundamentação pedagógica completa. Sua função é traduzir essa proposta para a lógica do jogo, descrevendo como a intencionalidade do projeto se materializa em estrutura jogável, fluxo de interação, organização de sistemas, mecânicas, progressão e interface.
 
 ---
 
-## 3. Conceito central
+## 3. Posicionamento do projeto no TPG System
 
-O projeto se estrutura como uma aventura narrativa em 2D, na qual o jogador assume o papel de um jovem guerreiro encarregado de enfrentar uma ruptura no equilíbrio sagrado de Pindorama. A progressão ocorre por meio da travessia de áreas, da interação com personagens orientadores, do enfrentamento de ameaças e da superação de provas que articulam ação e conhecimento.
+O artigo define o **TPG System** como uma Trilha Pedagógica Gamificada com elementos de RPG, organizada para promover engajamento, desenvolvimento, consolidação e aprofundamento de habilidades e competências, especialmente no componente Arte, ao mesmo tempo em que integra relatórios diagnósticos e de acompanhamento para professores. O jogo **Guardiões de Pindorama** ocupa, nesse sistema, a função de módulo interativo do estudante. fileciteturn2file0L1-L20 fileciteturn2file0L49-L76
 
-O conceito central do jogo está apoiado em quatro eixos principais:
+Assim, o jogo deve ser compreendido como parte de uma arquitetura mais ampla, composta por:
 
-### 3.1 Narrativa de restauração
-A trajetória do jogador é organizada em torno de uma missão de reparação. O desaparecimento ou a usurpação de um artefato sagrado desencadeia o conflito central e justifica a jornada do protagonista por diferentes regiões e desafios.
+- **módulo do estudante**, representado pelo jogo em Pygame;
+- **módulo gestor do professor**, descrito no artigo como interface de monitoramento e geração de relatórios;
+- **camada de dados**, voltada ao registro do progresso e apoio à análise pedagógica. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
 
-### 3.2 Experiência lúdica com progressão
-O jogo propõe avanço gradual por cenas, fases e áreas desbloqueáveis, valorizando a sensação de percurso, conquista e ampliação de mundo.
-
-### 3.3 Integração entre ação e aprendizagem
-Os elementos pedagógicos não aparecem como anexos externos à jogabilidade, mas como parte do próprio fluxo da experiência. Questões, diálogos e decisões narrativas são utilizados como mecanismos de continuidade, compreensão e validação do avanço do jogador.
-
-### 3.4 Valorização de referências culturais brasileiras
-O universo ficcional mobiliza símbolos, personagens, criaturas e elementos de matriz cultural brasileira, especialmente associados à ancestralidade, aos saberes tradicionais e à relação entre ser humano e natureza.
+Esse posicionamento é importante porque determina decisões de design. O jogo não foi planejado apenas como produto de entretenimento, mas como interface operacional de uma trilha gamificada com função formativa e diagnóstica.
 
 ---
 
-## 4. Gênero, escopo e posicionamento
+## 4. Gênero, escopo e proposta funcional
 
 ### 4.1 Gênero principal
-- Aventura 2D
-- Ação com progressão narrativa
-- Jogo sério de caráter educativo
 
-### 4.2 Subgêneros e aproximações funcionais
+- aventura 2D;
+- ação com progressão narrativa;
+- jogo sério de caráter educativo.
+
+### 4.2 Subgêneros e aproximações
+
 - plataforma lateral com exploração;
 - narrativa guiada por diálogos e eventos;
 - quiz contextualizado;
 - progressão por mapa;
-- combate em tempo real com chefe de fase.
+- combate em tempo real com boss.
 
-### 4.3 Escopo atual do protótipo
-A versão analisada apresenta um recorte funcional consistente, com cenas iniciais, menu, fluxo de seleção, mapa, ao menos duas fases jogáveis, sistema de pausa, persistência de progresso, diálogos encadeados, sistema de decisão e enfrentamento de boss.
+### 4.3 Escopo do protótipo atual
 
-### 4.4 Público de interesse
-O projeto se mostra especialmente pertinente para:
+Com base no protótipo documentado anteriormente e na arquitetura observada, o jogo já contempla:
 
-- estudantes em contexto de aprendizagem mediada por tecnologia;
-- professores, pesquisadores e avaliadores interessados em jogos sérios;
-- bancas acadêmicas e comissões de análise técnica de projetos educacionais digitais.
-
----
-
-## 5. Objetivos do projeto
-
-### 5.1 Objetivo geral
-Desenvolver um jogo digital autoral que una progressão narrativa, ação, exploração e desafios de conhecimento, promovendo uma experiência significativa tanto do ponto de vista lúdico quanto do ponto de vista formativo.
-
-### 5.2 Objetivos técnicos
-- estruturar um jogo modular em Python/Pygame com fluxo de cenas bem definido;
-- implementar sistemas de controle, HUD, pausa, save e progressão por mapa;
-- organizar ativos visuais e lógicas de fase de modo escalável;
-- consolidar um protótipo jogável apto a testes, análise e expansão.
-
-### 5.3 Objetivos pedagógicos
-- inserir conteúdos e referências culturais em um ambiente interativo e contextualizado;
-- favorecer engajamento por meio de narrativa, desafio e feedback imediato;
-- estimular aprendizagem integrada ao percurso do jogador;
-- demonstrar a aplicabilidade de jogos digitais como estratégia de mediação de conhecimentos.
+- tela inicial e entrada no sistema;
+- menu principal;
+- fluxo de seleção e navegação entre cenas;
+- mapa com progressão entre áreas;
+- fases jogáveis estruturadas;
+- personagem jogável com múltiplos estados;
+- interação com NPCs;
+- sistema de diálogo;
+- quizzes e decisões narrativas;
+- sistema de pausa;
+- enfrentamento de chefe;
+- persistência de progresso.
 
 ---
 
-## 6. Estrutura geral da experiência
+## 5. Objetivos de design do jogo
 
-O fluxo principal identificado no projeto pode ser compreendido como uma sequência articulada entre preparação, navegação, progressão e validação do avanço do jogador.
+### 5.1 Objetivo geral do módulo jogável
 
-### 6.1 Fluxo macro
-1. acesso à experiência por tela inicial;
-2. navegação pelo menu principal;
-3. entrada em sistemas de seleção e preparação;
-4. deslocamento ao mapa de progressão;
-5. escolha e acesso a uma fase;
-6. interação com narrativa local, desafios e combate;
-7. conclusão da área e registro do progresso;
-8. retorno ao mapa para continuidade da jornada.
+Oferecer ao estudante uma experiência digital interativa capaz de articular ação, narrativa, desafio e conteúdo em uma estrutura de progressão clara, envolvente e tecnicamente consistente.
 
-### 6.2 Fluxo micro dentro das fases
-Durante as fases, o jogador alterna entre deslocamento, leitura de situação, interação, enfrentamento, resolução de questões e observação de feedbacks visuais. Essa alternância confere ritmo à experiência e favorece a combinação entre tensão, leitura e tomada de decisão.
+### 5.2 Objetivos funcionais
 
----
+- permitir navegação por fluxo de cenas e áreas do mapa;
+- oferecer uma jornada estruturada por etapas, desafios e validações de progresso;
+- integrar diálogos, quizzes e decisões ao avanço da experiência;
+- sustentar combate, exploração e interação em uma mesma base jogável;
+- registrar estados de avanço do jogador.
 
-## 7. Estrutura de cenas
+### 5.3 Objetivos relacionados ao sistema ampliado
 
-A arquitetura do projeto evidencia uma organização por cenas, o que favorece clareza no fluxo do jogo e separação funcional entre telas e sistemas.
-
-### 7.1 Login
-A cena inicial cumpre papel de entrada no sistema. Ainda que determinados elementos de autenticação estejam simplificados no estado atual do protótipo, essa tela já configura um ponto de acesso institucional e funcional ao jogo.
-
-### 7.2 Menu principal
-O menu principal organiza o primeiro contato do usuário com a experiência. Nele se concentram opções essenciais, como iniciar o jogo, acessar configurações e encerrar a execução. A composição visual reforça a identidade do projeto e orienta o jogador para o início da jornada.
-
-### 7.3 Seleção de personagem
-A estrutura do projeto aponta para uma etapa de escolha de personagem, vinculada à identidade jogável e à organização do avanço posterior. Esse ponto possui relevância tanto mecânica quanto simbólica, pois demarca o vínculo entre jogador e avatar.
-
-### 7.4 Mapa
-O mapa atua como sistema de ordenação da progressão. Sua função é representar visualmente as áreas disponíveis, indicar conclusão de territórios e bloquear regiões finais até o cumprimento dos requisitos previstos.
-
-### 7.5 Fases jogáveis
-As fases concentram a maior densidade de jogabilidade. Nelas ocorrem movimentação, interação com personagens, desenvolvimento narrativo, resolução de quizzes, combate e atualização do estado global do jogo.
-
-### 7.6 Pausa e sobreposição de interface
-O sistema de pausa interrompe a jogabilidade sem romper a experiência. Além de contribuir para usabilidade, abre espaço para expansão de funcionalidades como inventário, navegação complementar ou opções contextuais.
-
-### 7.7 Game Over
-A presença de uma cena específica para falha ou derrota reforça o ciclo de tentativa, erro, aprendizagem e retomada, aspecto importante em jogos com componente de progressão e desafio.
+O artigo indica que o sistema busca permitir identificação de níveis de proficiência, diagnóstico de habilidades não consolidadas, acompanhamento do progresso e oferta de desafios adequados ao desenvolvimento individual do estudante. Dentro dessa lógica, o jogo funciona como ambiente de execução desses desafios e de coleta de evidências de percurso. fileciteturn2file0L49-L76 fileciteturn2file0L119-L144
 
 ---
 
-## 8. Personagem jogável
+## 6. Público-alvo do jogo
 
-O protagonista identificado no projeto, referido como **Jovem Guerreiro**, exerce função central na articulação entre narrativa, ação e progressão.
+No plano educacional do sistema, o artigo aponta estudantes do **9º ano do Ensino Fundamental** como público de referência, com foco no componente curricular **Arte** e nas linguagens artísticas, sem excluir articulações interdisciplinares. Também identifica os professores como usuários indiretos, responsáveis pela leitura dos resultados e pelo planejamento pedagógico a partir dos dados gerados. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
 
-### 8.1 Papel funcional
-- avatar principal do jogador;
-- agente de deslocamento e exploração;
-- sujeito das interações narrativas;
-- participante direto dos desafios pedagógicos;
-- combatente nas situações de enfrentamento.
+No plano técnico-jogável, o público imediato do módulo é o jogador-estudante, que interage com personagens, desafios, quizzes, combates e deslocamento por áreas. Já no plano institucional, o projeto também se dirige a avaliadores acadêmicos, docentes e equipes interessadas em **Jogos Sério**s e **Gamificação Pedagógica**.
 
-### 8.2 Ações observadas no protótipo
-A estrutura de sprites, estados e arquivos de cena indica que o personagem já opera com um conjunto expressivo de ações, incluindo:
+---
+
+## 7. Conceito de jogo
+
+O conceito central de **Guardiões de Pindorama** se organiza como uma aventura de travessia, restauração e enfrentamento. O jogador assume o papel de um protagonista jovem inserido em um território simbólico marcado por referências culturais brasileiras, por personagens orientadores e por ameaças que precisam ser superadas para restabelecer um equilíbrio comprometido.
+
+Em termos de design, o conceito do jogo se apoia em quatro eixos:
+
+### 7.1 Jornada narrativa
+A progressão é construída como percurso. O jogador não apenas executa ações isoladas, mas percorre um mundo em que narrativa, contexto e desafios se articulam.
+
+### 7.2 Progressão por conquista
+O avanço é condicionado à superação de áreas, à resolução de desafios e ao cumprimento de objetivos específicos, reforçando a percepção de campanha.
+
+### 7.3 Integração entre ação e conhecimento
+Os quizzes e as decisões não aparecem como elementos externos à jogabilidade, mas como pontos de validação e continuidade do próprio fluxo.
+
+### 7.4 Identidade cultural
+A ambientação, os personagens e a nomeação do universo reforçam uma identidade temática ligada a referências culturais brasileiras e à ancestralidade, o que dá singularidade ao projeto.
+
+---
+
+## 8. Estrutura macro da experiência
+
+A experiência do jogador pode ser representada por um ciclo macro de navegação:
+
+1. entrada no sistema;
+2. passagem pela tela inicial e menu;
+3. preparação e seleção;
+4. acesso ao mapa;
+5. escolha de área/fase;
+6. exploração, narrativa e desafios locais;
+7. conclusão da etapa;
+8. registro do progresso e retorno ao mapa.
+
+Esse fluxo é importante porque organiza a experiência como percurso contínuo, e não como conjunto fragmentado de telas. O mapa funciona como articulador de campanha, enquanto as fases concentram a densidade de interação.
+
+---
+
+## 9. Estrutura de cenas
+
+### 9.1 Tela inicial / Login
+A entrada no sistema exerce função de acesso, organização do primeiro contato e preparação do fluxo subsequente. Ainda que, em versões de teste, os sistemas de autenticação possam estar simplificados, essa cena mantém sua função estrutural como ponto de entrada institucional do módulo.
+
+### 9.2 Menu principal
+O menu principal organiza o acesso às funções fundamentais do jogo. Nele se concentram ações de início, navegação inicial e encerramento. Sua importância está na mediação entre identidade visual e usabilidade.
+
+### 9.3 Seleções e preparação
+O projeto contempla telas ligadas à preparação do percurso, como seleção de personagem e, em alguns fluxos, passagem para o mapa ou escolha de áreas.
+
+### 9.4 Mapa
+O mapa atua como sistema de progressão macro. É nele que o jogador visualiza áreas disponíveis, áreas concluídas e regiões ainda bloqueadas. A referência à área final **Propugnáculo Além-Mar** indica uma estrutura de bloqueio por requisitos e um objetivo de campanha de longo alcance.
+
+### 9.5 Fases jogáveis
+As fases concentram movimentação, diálogos, decisões, quizzes e combate. São o núcleo da jogabilidade e da execução do conteúdo.
+
+### 9.6 Pausa
+A pausa atua como sobreposição funcional, interrompendo momentaneamente a ação sem romper a experiência. É recurso importante de usabilidade e expansão futura.
+
+### 9.7 Encerramento / falha
+A existência de estados de derrota ou transição reforça a lógica de ciclo de tentativa, correção e retomada.
+
+---
+
+## 10. Personagem jogável
+
+O personagem principal funciona como avatar do jogador e eixo de integração entre narrativa, deslocamento, interação e combate.
+
+### 10.1 Funções principais
+
+- deslocar-se pelas fases;
+- interagir com NPCs e gatilhos de evento;
+- participar de quizzes e escolhas;
+- enfrentar ameaças e chefes;
+- atualizar o avanço da campanha.
+
+### 10.2 Ações observáveis no protótipo
+
+A documentação do protótipo e a organização dos estados do personagem indicam ações como:
 
 - movimentação lateral;
 - salto;
 - ataque;
 - defesa/bloqueio;
-- roll ou dash;
+- roll/dash;
 - interação;
-- progressão de diálogos;
-- participação em desafios e combates.
+- progressão de diálogo.
 
-### 8.3 Relevância de design
-A construção do personagem jogável demonstra preocupação com legibilidade de ação, clareza de resposta e variedade de estados. Isso contribui para uma experiência mais estável, especialmente em um projeto que precisa conciliar combate, navegação e leitura de elementos pedagógicos.
+### 10.3 Papel de design
 
----
-
-## 9. Mecânicas principais
-
-### 9.1 Exploração
-A exploração está vinculada ao deslocamento pelo cenário e à descoberta progressiva dos eventos da fase. Seu papel não é apenas espacial, mas também narrativo, pois é por meio dela que o jogador encontra pontos de ativação, diálogos e desafios.
-
-### 9.2 Combate
-O combate aparece como mecânica de tensão e prova de domínio. A combinação entre ataque, defesa, salto e deslocamento lateral configura uma base de ação simples, porém suficiente para sustentar confrontos com significado dramático.
-
-### 9.3 Interação narrativa
-Diálogos estruturados por falas, imagens e sequência de eventos exercem papel decisivo na compreensão do mundo do jogo. A narrativa não é tratada como camada secundária, mas como parte do avanço do sistema.
-
-### 9.4 Quiz integrado
-O sistema de questões é um dos elementos mais relevantes do ponto de vista pedagógico. Ao ser incorporado ao fluxo de fase, o quiz deixa de assumir formato isolado e passa a operar como prova contextualizada de aprendizagem.
-
-### 9.5 Decisão narrativa
-A presença de escolhas em determinados pontos da experiência amplia a agência do jogador, fortalece a sensação de percurso e permite modular a linearidade do avanço.
-
-### 9.6 Progressão por mapa
-O uso de mapa com desbloqueio de áreas fortalece a percepção de jornada e organiza de modo claro a estrutura macro do jogo.
+O personagem jogável foi construído para sustentar variedade de estados sem comprometer a legibilidade da ação. Essa decisão é relevante porque o jogo combina leitura, combate e exploração, exigindo transições compreensíveis e responsivas.
 
 ---
 
-## 10. Sistema de combate e desafio
+## 11. Mecânicas principais
 
-O sistema de combate identificado no projeto demonstra uma abordagem funcional voltada à ação em tempo real, com forte apoio em animações de estado e feedbacks visuais.
+### 11.1 Exploração
+A exploração estrutura o avanço espacial do jogador. Seu papel é permitir deslocamento, descoberta de gatilhos, encontros com personagens e acesso aos pontos de desafio.
 
-### 10.1 Estrutura do combate
-O jogador utiliza recursos básicos de ataque, defesa e mobilidade para enfrentar ameaças presentes nas fases. Essa estrutura, embora objetiva, é adequada ao estágio do protótipo e oferece base suficiente para polimento posterior.
+### 11.2 Interação narrativa
+A narrativa é transmitida por meio de diálogos sequenciados, imagens, falas de NPCs e eventos encadeados. Esse sistema guia o jogador e contextualiza tanto a missão quanto os desafios locais.
 
-### 10.2 Enfrentamento de boss
-A presença do **Mapinguari** como chefe de fase estabelece um marco importante na progressão do jogo. O boss não atua apenas como obstáculo mecânico, mas como elemento de forte função narrativa, ampliando tensão, exigência técnica e densidade simbólica da experiência.
+### 11.3 Quiz contextualizado
+O artigo afirma que o sistema utiliza desafios intelectuais como questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. No módulo jogável, isso se materializa em quizzes e decisões integradas à narrativa e à progressão. fileciteturn2file0L1-L20
 
-### 10.3 Valor para a experiência
-O combate contribui para:
+### 11.4 Decisão narrativa
+A presença de escolhas confere agência ao jogador e modula o avanço narrativo. Em termos de design, esse recurso amplia envolvimento e evita que o percurso se reduza a repetição linear de comandos.
 
-- variação de ritmo;
-- elevação gradual da dificuldade;
-- materialização do conflito narrativo;
-- reforço do caráter de aventura;
-- equilíbrio entre leitura, decisão e ação.
+### 11.5 Combate
+O combate funciona como mecânica de tensão e prova de domínio das ações básicas do personagem. Sua presença dá ritmo à jornada e materializa o conflito do mundo do jogo.
+
+### 11.6 Progressão por mapa
+A progressão por mapa fornece uma representação clara do percurso global do jogador e sustenta bloqueio/desbloqueio de áreas com base no avanço registrado.
 
 ---
 
-## 11. Narrativa e universo do jogo
+## 12. Sistema de combate
 
-A narrativa de **Guardiões de Pindorama** apresenta uma organização mítica, com forte presença de símbolos de ruptura, restauração, ancestralidade e missão.
+O sistema de combate foi estruturado para oferecer uma base jogável de ação em tempo real compatível com o estágio do protótipo.
 
-### 11.1 Premissa dramática
-O desaparecimento de um elemento sagrado compromete o equilíbrio do mundo e justifica a jornada do protagonista. A experiência é conduzida por personagens orientadores, encontros com ameaças e eventos que articulam prova, aprendizagem e escolha.
+### 12.1 Componentes do sistema
 
-### 11.2 Personagens de destaque
-#### Cacique
-Cumpre papel de orientador, mediador narrativo e agente de convocação. Sua presença organiza a entrada do jogador no conflito central e legitima a missão.
+- ataque direto;
+- defesa/bloqueio;
+- mobilidade tática por salto e deslocamento;
+- roll/dash como recurso adicional de ação;
+- confronto com inimigos e boss.
 
-#### Mapinguari
-Atua como antagonista ou prova dramática relevante. Sua inserção amplia o conflito e torna mais evidente a combinação entre mito, desafio e progressão.
+### 12.2 Boss de fase
 
-### 11.3 Temas predominantes
-- equilíbrio entre humanidade e natureza;
+A presença do **Mapinguari** como chefe de fase é um marco técnico e dramático importante. Em termos de design, o boss exerce múltiplas funções:
+
+- elevar a exigência mecânica do jogador;
+- condensar o conflito narrativo da etapa;
+- marcar momentos de clímax;
+- reforçar a identidade mítica e cultural do jogo.
+
+### 12.3 Valor sistêmico
+
+O combate evita que o jogo se restrinja a leitura de eventos e resolução de perguntas. Ele amplia o repertório de interação e equilibra os tempos de ação e reflexão.
+
+---
+
+## 13. NPCs e personagens relevantes
+
+### 13.1 Cacique
+O **Cacique** exerce função de orientação, convocação narrativa e mediação entre jogador e missão. Sua presença organiza a entrada do protagonista no conflito e fortalece a dimensão simbólica do universo do jogo.
+
+### 13.2 Mapinguari
+O **Mapinguari** ocupa posição de antagonismo ou prova dramática relevante. Sua função ultrapassa o simples papel de inimigo, pois também consolida o tom do mundo ficcional e o peso dos confrontos.
+
+### 13.3 Protagonista
+O protagonista, frequentemente referido como **Jovem Guerreiro** na documentação do protótipo, funciona como ponto de convergência entre narrativa, ação e aprendizagem.
+
+---
+
+## 14. Narrativa e ambientação
+
+A narrativa de **Guardiões de Pindorama** se estrutura como jornada de restauração em um território simbólico atravessado por ancestralidade, referências culturais brasileiras, conflito e reparação.
+
+### 14.1 Premissa
+Um desequilíbrio atinge o mundo do jogo e convoca o protagonista a percorrer áreas, receber orientação, enfrentar ameaças e superar provas para restaurar a ordem comprometida.
+
+### 14.2 Temas centrais
+
+- equilíbrio entre natureza e ação humana;
 - responsabilidade coletiva;
+- travessia e amadurecimento;
 - ancestralidade;
-- valorização de saberes culturais;
-- travessia, prova e amadurecimento.
+- valorização cultural;
+- missão e reparação.
 
-### 11.4 Estrutura narrativa observada
-A organização dos diálogos e eventos indica uma narrativa progressiva, em que introdução, validação do protagonista, confronto e decisão aparecem como etapas articuladas do percurso.
+### 14.3 Função da narrativa no design
 
----
-
-## 12. Dimensão pedagógica
-
-A relevância pedagógica do projeto se manifesta não apenas pelo tema abordado, mas pela forma como conteúdos e desafios são inseridos no próprio design da experiência.
-
-### 12.1 Integração entre aprendizagem e jogabilidade
-Os conteúdos trabalhados pelo jogo aparecem incorporados à ação, ao diálogo e ao sistema de perguntas. Isso favorece uma aprendizagem contextualizada, na qual o jogador precisa compreender, lembrar, associar e responder para avançar.
-
-### 12.2 Natureza dos desafios
-Os quizzes observados tratam de temas culturais e de conhecimentos relacionados à temática da fase. Assim, a progressão depende de um duplo movimento: domínio das mecânicas do jogo e mobilização de saberes.
-
-### 12.3 Potencial formativo
-O projeto apresenta potencial para:
-
-- ampliar engajamento do estudante;
-- estimular aprendizagem por desafio e feedback;
-- valorizar repertórios culturais brasileiros;
-- demonstrar possibilidades concretas de aplicação de jogos digitais em contextos pedagógicos.
-
-### 12.4 Relevância para análise institucional
-Sob o ponto de vista avaliativo, o jogo evidencia uma tentativa consistente de superar a dicotomia entre “conteúdo” e “entretenimento”, propondo uma experiência em que ambos os aspectos se sustentam mutuamente.
+A narrativa não é apenas decorativa. Ela organiza o sentido da exploração, justifica os combates, contextualiza os quizzes e sustenta a progressão da campanha.
 
 ---
 
-## 13. Progressão e estrutura do mundo
+## 15. Sistema de desafios pedagógicos no jogo
 
-A progressão do jogo é organizada por áreas e controlada por sistema de estado global.
+Embora este GDD mantenha foco técnico, é necessário registrar como os desafios de conteúdo se integram ao design, pois isso afeta diretamente a arquitetura do jogo.
 
-### 13.1 Organização por áreas
-A estrutura observada indica áreas iniciais e ao menos uma área final condicionada ao cumprimento prévio de requisitos. Esse desenho favorece clareza de meta e ordenação da jornada.
+O artigo informa que o sistema foi concebido para estimular estudantes por meio de interface digital de jogo, oferecendo questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. Também afirma que os resultados serão integrados à interface do professor, apoiando monitoramento e relatórios de habilidades desenvolvidas, recuperadas e consolidadas. fileciteturn2file0L1-L20
 
-### 13.2 Área final bloqueada
-A referência à região **Propugnáculo Além-Mar** como área final demonstra a existência de um objetivo macro de progressão, funcionando como horizonte de conquista do percurso.
+No módulo jogável, essa diretriz se traduz em:
 
-### 13.3 Valor de design
-Essa estrutura é relevante porque:
+- quizzes inseridos no fluxo da fase;
+- validação de avanço por resposta ou decisão;
+- articulação entre narrativa e conteúdo;
+- feedback sobre acerto e erro;
+- continuidade da progressão condicionada ao desempenho do jogador.
 
-- incentiva continuidade;
-- organiza ritmo de descoberta;
-- permite expansão futura com novos territórios;
-- fortalece a sensação de campanha ou jornada.
+Em termos de design de sistema, isso significa que o jogo precisa manter mecanismos de:
+
+- chamada e exibição de questões;
+- registro de resposta;
+- retorno visual ao jogador;
+- encadeamento entre resultado e próximo evento;
+- integração entre dados do desafio e estado global do jogo.
 
 ---
 
-## 14. Interface, HUD e feedback visual
+## 16. Progressão e estrutura do mundo
 
-A interface do projeto revela um esforço consistente de mediação visual entre jogador e sistema.
+### 16.1 Áreas e campanha
+A progressão do jogo é organizada por áreas acessadas via mapa. Cada área representa uma etapa do percurso e pode conter narrativa local, combate, desafios e registros específicos de conclusão.
 
-### 14.1 Elementos identificados
+### 16.2 Bloqueios e desbloqueios
+O sistema utiliza condições de acesso para liberar áreas posteriores. A área final, **Propugnáculo Além-Mar**, atua como destino condicionado ao cumprimento prévio de objetivos nas demais regiões.
+
+### 16.3 Valor técnico
+Essa estrutura fortalece:
+
+- clareza de meta para o jogador;
+- organização de conteúdo por etapa;
+- escalabilidade para expansão futura;
+- controle sistêmico do avanço.
+
+---
+
+## 17. Interface, HUD e feedbacks
+
+A interface do jogo é uma camada central de comunicação entre sistema e jogador.
+
+### 17.1 Elementos observados
+
 - menu principal com navegação por cursor;
+- molduras e telas de interface;
+- retratos e imagens de apoio aos diálogos;
 - HUD do jogador;
 - HUD do boss;
-- retratos e imagens de diálogo;
-- telas de estado, como pausa e game over;
-- feedbacks específicos para respostas corretas e incorretas.
+- feedbacks de resposta correta e incorreta;
+- sobreposição de pausa.
 
-### 14.2 Função comunicacional
-A interface exerce papel central na legibilidade da experiência, especialmente por se tratar de um jogo que combina movimentação, combate e leitura de informação pedagógica.
+### 17.2 Função técnica
 
-### 14.3 Qualidade observada
-A organização dos elementos indica preocupação com molduras, enquadramento, reforço imagético e clareza de estados, o que contribui para uma experiência mais compreensível e visualmente coesa.
+A interface organiza a leitura do estado atual do jogo, do resultado das ações e da progressão dos eventos. Em um projeto que mescla combate, leitura e desafios cognitivos, essa camada é decisiva para a usabilidade.
+
+### 17.3 Qualidade de design observada
+
+A presença de assets dedicados à HUD, ao boss, aos diálogos e ao enquadramento visual demonstra preocupação em manter consistência e reconhecimento de estados, o que reforça a identidade do projeto e melhora a experiência de uso.
 
 ---
 
-## 15. Controles e acessibilidade funcional
+## 18. Controles e entrada do jogador
 
-O projeto foi concebido para operar com teclado e joystick, o que amplia possibilidades de uso e demonstra maturidade técnica no tratamento da entrada do jogador.
+O projeto foi desenvolvido com suporte a teclado e joystick, o que amplia versatilidade técnica e capacidade de experimentação.
 
-### 15.1 Suportes identificados
+### 18.1 Dispositivos suportados
+
 - teclado;
-- controle com mapeamentos específicos;
-- compatibilidade com diferentes perfis de joystick.
+- controle/joystick;
+- integração com joystick analógico via Arduino Leonardo, no contexto ampliado do sistema. O artigo registra explicitamente essa integração IoT como parte do desenvolvimento técnico do projeto. fileciteturn2file0L119-L124
 
-### 15.2 Importância técnica
-A existência de suporte a múltiplos dispositivos fortalece testes, amplia flexibilidade de uso e contribui para a qualidade do protótipo enquanto produto jogável.
+### 18.2 Implicações de design
 
-### 15.3 Relevância pedagógica indireta
-Ao diversificar formas de acesso e controle, o projeto amplia potencial de uso em contextos diferentes, inclusive em ambientes de demonstração, laboratório e apresentação institucional.
+O suporte a múltiplos dispositivos exige:
 
----
-
-## 16. Direção de arte e identidade visual
-
-A direção de arte observada no projeto constitui um dos seus pontos de maior personalidade.
-
-### 16.1 Características gerais
-O jogo apresenta composição visual autoral em 2D, com uso de sprites, molduras, telas ilustradas, retratos de personagem, camadas de cenário e HUDs específicos.
-
-### 16.2 Identidade estética
-A estética reforça atmosfera de aventura mítica e de valorização cultural. A presença de personagens como o Cacique e o Mapinguari, somada ao trabalho de cenários e elementos de interface, contribui para uma linguagem visual própria.
-
-### 16.3 Implicação para o projeto
-Do ponto de vista técnico e comunicacional, a arte não atua apenas como adorno, mas como componente estrutural da identidade do jogo, favorecendo reconhecimento, imersão e coerência temática.
+- abstração adequada dos comandos;
+- consistência entre entrada e resposta do personagem;
+- testes de usabilidade em diferentes perfis de controle;
+- previsibilidade de navegação em menus e em ação.
 
 ---
 
-## 17. Estrutura técnica do desenvolvimento
+## 19. Direção de arte e identidade visual
 
-A arquitetura do projeto demonstra organização modular e preocupação com manutenção.
+A direção de arte do jogo constitui um de seus elementos de maior singularidade.
 
-### 17.1 Base tecnológica
-- linguagem: Python;
-- biblioteca principal: Pygame;
-- organização por scripts, dados e assets.
+### 19.1 Características gerais
 
-### 17.2 Elementos estruturais identificados
-- arquivo central de inicialização e loop;
-- sistema de cenas;
-- controle de estado global;
-- dados separados para diálogos, decisões e questões;
-- assets organizados por função;
-- persistência por arquivo JSON.
+- visual 2D autoral;
+- uso de sprites, ilustrações e molduras dedicadas;
+- personagens com forte identidade temática;
+- ambientação de aventura simbólica e mítica;
+- presença de elementos visuais associados à cultura brasileira.
 
-### 17.3 Mérito técnico do protótipo
-A existência de modularização entre lógica, interface, conteúdo e persistência demonstra consistência de desenvolvimento e fornece boa base para evolução futura.
+### 19.2 Ferramentas relacionadas à produção visual
 
----
+O artigo registra que a criação visual do projeto utilizou ferramentas como **Hero Forge**, **Inkscape**, **Krita** e plataformas de IA generativa, além de validação de interface em **Figma** para o módulo gestor. Essas informações ajudam a compreender o pipeline artístico e de prototipação vinculado ao projeto. fileciteturn2file0L106-L124
 
-## 18. Persistência, estado global e continuidade
+### 19.3 Função da arte no design
 
-O sistema de save e estado global é um recurso essencial no projeto, pois garante continuidade da experiência e coerência da progressão.
-
-### 18.1 Funções observadas
-- registro de áreas concluídas;
-- armazenamento de flags e condições de jogo;
-- persistência de dados em arquivo;
-- suporte à retomada da jornada.
-
-### 18.2 Importância para o design
-Esse sistema permite ao jogo operar como experiência progressiva, e não apenas como conjunto de cenas isoladas. Isso é fundamental para um projeto cujo sentido depende de percurso, desbloqueio e continuidade narrativa.
+A arte não é apenas estética. Ela comunica estados, reforça a narrativa, diferencia personagens, sustenta a imersão e contribui para a legibilidade do sistema.
 
 ---
 
-## 19. Estado atual do desenvolvimento
+## 20. Estrutura técnica do protótipo
 
-Com base na versão analisada, o projeto já apresenta um estágio de desenvolvimento significativamente estruturado.
+### 20.1 Base tecnológica
 
-### 19.1 Elementos consolidados
+O artigo informa que o jogo “Guardiões de Pindorama” foi desenvolvido em **Python** com a biblioteca **Pygame**, enquanto o módulo gestor foi implementado em **Flask** e o banco de dados estruturado em **MySQL**. A tabela de ferramentas apresentada na página 6 consolida esse ecossistema de desenvolvimento. fileciteturn2file0L106-L124 fileciteturn2file0L149-L169
+
+### 20.2 Componentes estruturais identificados no jogo
+
+- arquivo principal de inicialização e loop;
+- organização por cenas;
+- módulos para diálogos, decisões e dados de fase;
+- sistema de estado global;
+- persistência em arquivo;
+- organização de assets por função;
+- suporte a HUD e sobreposições.
+
+### 20.3 Qualidade arquitetural
+
+A modularização observada indica preocupação com manutenção, crescimento e clareza funcional. Essa base favorece iteração contínua e refinamento do protótipo.
+
+---
+
+## 21. Persistência e estado global
+
+O sistema de save e estado global é essencial para a coerência da experiência.
+
+### 21.1 Funções principais
+
+- registrar áreas concluídas;
+- armazenar condições de desbloqueio;
+- manter flags de progressão narrativa;
+- sustentar continuidade entre sessões de jogo.
+
+### 21.2 Importância para o design
+
+Sem persistência, a proposta perderia sua natureza de trilha progressiva. O registro do percurso é requisito técnico fundamental para um jogo que depende de campanha, desbloqueio e retorno ao mapa.
+
+---
+
+## 22. Metodologia de desenvolvimento
+
+O artigo informa que o desenvolvimento técnico da aplicação adotou a metodologia ágil **Scrum**, com organização em sprints, revisões iterativas e melhorias contínuas com base em feedbacks de professores e estudantes. Isso ajuda a compreender o estágio do protótipo como resultado de desenvolvimento incremental, e não como construção linear fechada. fileciteturn2file0L94-L104
+
+Do ponto de vista do GDD, essa informação é importante porque explica:
+
+- a natureza iterativa do projeto;
+- a coexistência de sistemas já consolidados e pontos ainda em refinamento;
+- a abertura do protótipo à evolução de design, tecnologia e conteúdo.
+
+---
+
+## 23. Estado atual do desenvolvimento
+
+Com base na versão analisada e no artigo, o projeto já apresenta um estágio consistente de prototipação funcional.
+
+### 23.1 Elementos consolidados
+
 - identidade temática definida;
+- módulo jogável em Python/Pygame;
 - fluxo principal de navegação implementado;
-- menu e cenas funcionais;
-- personagem jogável com estados e ações;
-- sistema de diálogo e quiz em funcionamento;
-- boss de fase implementado;
-- progressão por mapa;
-- persistência de progresso;
-- suporte a múltiplas formas de controle.
+- mapa e progressão por áreas;
+- personagem jogável com múltiplos estados;
+- diálogos e quizzes integrados à narrativa;
+- combate e boss de fase;
+- suporte a joystick/IoT no ecossistema do projeto;
+- integração planejada com módulo gestor e relatórios. fileciteturn2file0L1-L20 fileciteturn2file0L106-L124
 
-### 19.2 Aspectos ainda passíveis de refinamento
-- documentação formal mais ampla;
-- polimento de fluxo completo;
-- balanceamento de combate;
-- padronização final de assets e nomenclaturas;
-- consolidação da lore e das descrições institucionais do projeto.
+### 23.2 Aspectos em continuidade
 
----
+O próprio artigo aponta próximos passos como:
 
-## 20. Potencial de expansão
+- incorporação de IA para análise de dados e geração personalizada de questões;
+- investigação de motores como Unity, Unreal e Godot para aprimoramento gráfico;
+- expansão da plataforma para dispositivos móveis. fileciteturn2file0L129-L144 fileciteturn2file0L170-L189
 
-O projeto apresenta base consistente para crescimento em múltiplas frentes.
-
-### 20.1 Expansão de conteúdo
-- novas áreas e fases;
-- ampliação do mapa;
-- novos personagens e variações jogáveis;
-- novos bosses e eventos narrativos.
-
-### 20.2 Expansão pedagógica
-- ampliação dos conteúdos trabalhados;
-- diversificação dos tipos de desafio;
-- vinculação com trilhas formativas específicas;
-- aprofundamento da mediação de repertórios culturais.
-
-### 20.3 Expansão técnica
-- refinamento de interface;
-- melhoria do pipeline de assets;
-- otimizações de publicação;
-- consolidação de documentação para manutenção e continuidade.
+Em termos de design do jogo, isso sugere continuidade de polimento visual, ampliação de conteúdos, amadurecimento técnico e expansão de alcance da solução.
 
 ---
 
-## 21. Considerações analíticas finais
+## 24. Considerações finais
 
-**Guardiões de Pindorama** apresenta-se como um projeto de desenvolvimento autoral com identidade temática definida, arquitetura funcional consistente e clara intencionalidade pedagógica. A análise do protótipo indica que o jogo já ultrapassou uma etapa meramente conceitual e se encontra em um estágio no qual as principais estruturas de navegação, jogabilidade e progressão estão estabelecidas.
+**Guardiões de Pindorama** é um jogo tecnicamente estruturado para operar como módulo interativo do estudante dentro do **TPG System**. Sua arquitetura combina narrativa, progressão por mapa, quizzes, combate, interação com NPCs, persistência e interface dedicada, compondo uma base jogável consistente.
 
-Do ponto de vista técnico, o projeto demonstra capacidade de organização modular, integração entre cenas, persistência de progresso, suporte a diferentes entradas de controle e implementação de sistemas que sustentam uma experiência jogável significativa. Do ponto de vista pedagógico, destaca-se a forma como narrativa, quiz, diálogo e referências culturais são incorporados ao design, evidenciando uma proposta de aprendizagem integrada ao ato de jogar.
+O artigo do projeto esclarece que essa implementação não foi concebida como jogo isolado, mas como parte de uma proposta de trilha pedagógica gamificada, direcionada ao componente curricular Arte, ao engajamento de estudantes do 9º ano do Ensino Fundamental e ao apoio à prática docente por meio de relatórios e monitoramento. Esse enquadramento fortalece a leitura técnica do jogo, porque demonstra que sua estrutura de design responde a finalidades concretas de uso. fileciteturn2file0L1-L20 fileciteturn2file0L119-L144
 
-Em síntese, trata-se de um projeto com mérito técnico e relevância formativa, cuja continuidade tende a fortalecer ainda mais seu valor acadêmico, institucional e educacional. O desenvolvimento observado revela coerência entre intenção, estrutura e aplicação, configurando um caso promissor de articulação entre tecnologia, design de jogos e mediação pedagógica.
+Como documento técnico, este GDD registra a lógica de funcionamento do jogo, seus sistemas centrais, suas decisões de design e seu posicionamento dentro da solução mais ampla. A continuidade do desenvolvimento tende a fortalecer ainda mais a integração entre arquitetura jogável, qualidade visual, controle de progressão e escalabilidade do projeto.
