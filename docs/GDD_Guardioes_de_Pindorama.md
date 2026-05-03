@@ -198,21 +198,27 @@ O personagem jogável foi construído para sustentar variedade de estados sem co
 ## 11. Mecânicas principais
 
 ### 11.1 Exploração
+
 A exploração estrutura o avanço espacial do jogador. Seu papel é permitir deslocamento, descoberta de gatilhos, encontros com personagens e acesso aos pontos de desafio.
 
 ### 11.2 Interação narrativa
+
 A narrativa é transmitida por meio de diálogos sequenciados, imagens, falas de NPCs e eventos encadeados. Esse sistema guia o jogador e contextualiza tanto a missão quanto os desafios locais.
 
 ### 11.3 Quiz contextualizado
+
 O artigo afirma que o sistema utiliza desafios intelectuais como questionários, análise de dados e imagens, quebra-cabeças e batalhas virtuais. No módulo jogável, isso se materializa em quizzes e decisões integradas à narrativa e à progressão.
 
 ### 11.4 Decisão narrativa
+
 A presença de escolhas confere agência ao jogador e modula o avanço narrativo. Em termos de design, esse recurso amplia envolvimento e evita que o percurso se reduza a repetição linear de comandos.
 
 ### 11.5 Combate
+
 O combate funciona como mecânica de tensão e prova de domínio das ações básicas do personagem. Sua presença dá ritmo à jornada e materializa o conflito do mundo do jogo.
 
 ### 11.6 Progressão por mapa
+
 A progressão por mapa fornece uma representação clara do percurso global do jogador e sustenta bloqueio/desbloqueio de áreas com base no avanço registrado.
 
 ---
@@ -241,6 +247,90 @@ A presença do **Mapinguari** como chefe de fase é um marco técnico e dramáti
 ### 12.3 Valor sistêmico
 
 O combate evita que o jogo se restrinja a leitura de eventos e resolução de perguntas. Ele amplia o repertório de interação e equilibra os tempos de ação e reflexão.
+
+
+### 12.4 Comportamento do Boss (Mapinguari)
+
+O comportamento do boss **Mapinguari** foi aprimorado para operar por ciclos de decisão, combinando marcação de posição, deslocamento orientado, espera estratégica e ataques de investida.
+
+#### 12.4.1 Lógica geral de movimentação
+
+- o Mapinguari registra a posição atual do jogador;
+- essa posição passa a ser definida como destino temporário;
+- o boss se desloca até o ponto marcado;
+- mesmo que o jogador mude de posição, o boss mantém o destino inicial;
+- ao chegar ao ponto definido, o Mapinguari interrompe o movimento;
+- após parar, entra em estado de *idle* e se orienta automaticamente em direção ao jogador.
+
+#### 12.4.2 Estados de comportamento
+
+- **Idle inicial:** estado de espera antes do início efetivo da ação (~5 segundos);
+- **Movimento orientado:** deslocamento até a posição marcada;
+- **Idle pós-movimento:** pausa após alcançar o destino;
+- **Investida:** ataque com aumento de velocidade;
+- **Movimentação aleatória controlada:** alternância entre aproximação e ataque.
+
+#### 12.4.3 Ajustes de animação e velocidade
+
+- redução da velocidade de frames no *idle*;
+- aumento da velocidade de deslocamento;
+- correção de inconsistência esquerda/direita;
+- ajuste nas animações de corrida;
+- aumento da velocidade da investida.
+
+#### 12.4.4 Impacto no design de combate
+
+- combate baseado em leitura de padrão;
+- necessidade de antecipação;
+- alternância entre pausa e ação;
+- maior imprevisibilidade do boss.
+
+#### 12.4.5 Limitação atual da implementação
+
+Até o momento, o sistema de **hitbox** e **aplicação de dano ao jogador** ainda não está implementado.
+
+- não há detecção de colisão funcional;
+- não há perda de vida do jogador;
+- o combate é apenas comportamental e visual.
+
+#### 12.4.6 Implementações futuras previstas
+
+- definição de hitboxes;
+- sistema de colisão;
+- aplicação de dano;
+- feedback visual no HUD.
+
+---
+
+### 12.5 Sistema de decisão pós-combate
+
+Após o confronto com o boss **Mapinguari**, o jogo entra em uma etapa de resolução narrativa, na qual ocorre um diálogo final seguido de um sistema de decisão.
+
+#### 12.5.1 Estrutura da decisão
+
+- apresentação do diálogo final;
+- exibição de opções ao jogador;
+- escolha de um caminho;
+- registro da decisão no sistema.
+
+#### 12.5.2 Impacto da escolha no sistema
+
+- alteração da narrativa;
+- desbloqueio de eventos;
+- impacto na progressão;
+- atualização do estado global.
+
+#### 12.5.3 Relação com a progressão
+
+A decisão transforma o encerramento do combate em um ponto de ramificação da experiência, influenciando o percurso do jogador.
+
+#### 12.5.4 Valor de design
+
+- aumento da agência do jogador;
+- aproximação com RPG;
+- fortalecimento da narrativa;
+- integração entre combate e decisão.
+"""
 
 ---
 
