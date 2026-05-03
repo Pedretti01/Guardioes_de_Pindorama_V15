@@ -56,7 +56,7 @@ class Player(Obj):
 
     ROLL_KEY = pygame.K_LSHIFT
     ROLL_DURATION_MS = 350
-    ROLL_DISTANCE_PX = 200
+    ROLL_DISTANCE_PX = 250
     ROLL_COOLDOWN_MS = 450
 
     SPRITE_ROOT = "assets/charsSprite/player/indigenaM/"
